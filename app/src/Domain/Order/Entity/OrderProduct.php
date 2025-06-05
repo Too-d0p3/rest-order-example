@@ -31,6 +31,10 @@ class OrderProduct
     #[Groups(['order:read'])]
     private int $quantity;
 
+    #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
+    private Order $order;
+
     private function __construct(
         Uuid $id,
         string $productId,
@@ -83,5 +87,15 @@ class OrderProduct
     public function getQuantity(): int
     {
         return $this->quantity;
+    }
+
+    public function getOrder(): Order
+    {
+        return $this->order;
+    }
+
+    public function setOrder(Order $order): void
+    {
+        $this->order = $order;
     }
 }
