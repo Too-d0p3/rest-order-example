@@ -117,4 +117,9 @@ class Order
             $product->setOrder(null);
         }
     }
+
+    public function updateDeliveryDate(\DateTimeImmutable $date): void
+    {
+        $this->deliveryDate = $date;
+    }
 }
